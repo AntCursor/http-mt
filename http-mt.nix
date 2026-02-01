@@ -1,6 +1,6 @@
-{pkgs, stdenv, lib, ...}: 
+{pkgs, stdenv, lib, mesonBuildType?"debug", ...}: 
   let 
-    buildDeps = with pkgs; [gcc];
+    buildDeps = with pkgs; [gcc meson ninja pkg-config];
 
     fs = lib.fileset;
     sourceFiles = fs.difference
@@ -17,6 +17,8 @@
       root = ./.;
       fileset = sourceFiles;
     };
+    
+    inherit mesonBuildType;
 
-    buildInputs = buildDeps;
+    nativeBuildInputs = buildDeps;
   } 
