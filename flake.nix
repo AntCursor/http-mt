@@ -34,6 +34,12 @@
         # To call with 'nix run'
         apps.default = self'.apps.http-mt;
 
+        devShells = {
+          default = pkgs.mkShell {
+            inputsFrom = [self'.packages.http-mt];
+            buildInputs = with pkgs; [ gdb ];
+          };
+        };
       };
       flake = {
       };
