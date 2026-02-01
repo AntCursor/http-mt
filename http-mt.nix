@@ -18,10 +18,19 @@
       fileset = sourceFiles;
     };
     
+    inherit mesonBuildType;
+
     nativeBuildInputs = buildDeps;
 
     mesonFlags = [
-      "-Dbuildtype=${mesonBuildType}"
       "-Ddefault_library=static"
     ];
+
+    meta = {
+      description = "A simple multi-threaded HTTP server written in C";
+      homepage = "https://github.com/AntCursor/http-mt";
+      license = lib.licenses.agpl3Only;
+      maintainers = with lib.maintainers; [ antcursor ];
+      mainProgram = "http-mt";
+    };
   } 
