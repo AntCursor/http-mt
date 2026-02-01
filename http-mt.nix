@@ -18,7 +18,10 @@
       fileset = sourceFiles;
     };
     
-    inherit mesonBuildType;
-
     nativeBuildInputs = buildDeps;
+
+    mesonFlags = [
+      "-Dbuildtype=${mesonBuildType}"
+      "-Ddefault_library=static"
+    ];
   } 
