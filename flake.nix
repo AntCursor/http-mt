@@ -13,11 +13,17 @@
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
       perSystem = { config, self', inputs', pkgs, system, ... }: {
 
-        # To call with 'nix build .'
-        packages.http-mt = pkgs.callPackage ./http-mt.nix {};
+        packages = {
 
-        # To call with 'nix build'
-        packages.default = self'.packages.http-mt;
+          # To call with 'nix build .#http-mt-<mesonBuildType>'
+          http-mt = pkgs.callPackage ./http-mt.nix {};
+          http-mt-debug = pkgs.callPackage ./http-mt.nix {mesonBuildType="debug";};
+          http-mt-release = pkgs.callPackage ./http-mt.nix {mesonBuildType="release";};
+          http-mt-debugoptimized = pkgs.callPackage ./http-mt.nix {mesonBuildType="debugoptimized";};
+
+          # To call with 'nix build'
+          default = self'.packages.http-mt;
+        };
 
         # To call with 'nix run .#http-mt'
         apps.http-mt = {
