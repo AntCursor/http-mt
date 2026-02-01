@@ -38,6 +38,14 @@
           default = pkgs.mkShell {
             inputsFrom = [self'.packages.http-mt];
             buildInputs = with pkgs; [ gdb ];
+            shellHook = ''
+              if [ ! -d build ]; then
+                meson setup build
+              fi
+              if [ -f build/compile_commands.json ]; then
+                ln -sf build/compile_commands.json compile_commands.json
+              fi
+            '';
           };
         };
       };

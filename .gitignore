@@ -55,5 +55,8 @@ dkms.conf
 *.dwo
 
 build/
-
+builddir/
+compile_commands.json
 result/
+.cache/
+.direnv/
