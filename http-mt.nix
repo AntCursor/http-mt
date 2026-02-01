@@ -1,6 +1,6 @@
 {pkgs, stdenv, lib, mesonBuildType?"debug", ...}: 
   let 
-    buildDeps = with pkgs; [gcc meson ninja pkg-config];
+    buildDeps = with pkgs; [meson ninja pkg-config];
 
     fs = lib.fileset;
     sourceFiles = fs.difference
