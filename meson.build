@@ -8,7 +8,7 @@ project(
   ],
 )
 
-sources = files('src/main.c')
+sources = files('src/main.c', 'src/server.c')
 
 include_dirs = include_directories('include')
 
